@@ -8,7 +8,7 @@ const Root = () => {
     <div>
       <h1>Root</h1>
       <button
-        onClick={() => {
+        onClick={(e) => {
           push("/about");
         }}
       >
