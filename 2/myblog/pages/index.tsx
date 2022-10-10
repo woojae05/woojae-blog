@@ -11,15 +11,13 @@ const Home: NextPage = (props: any) => {
   return (
     <div>
       {docs.map(({ slug, data }: DocType) => (
-        <>
-          <div>
-            <Link href={`/${slug}`}>
-              <a>{data.title}</a>
-            </Link>
-            <p>{data.description}</p>
-            <p>{data.date}</p>
-          </div>
-        </>
+        <div key={slug} className="grid place-items-center">
+          <Link href={`/${slug}`}>
+            <a className="text-3xl font-bold underline">{data.title}</a>
+          </Link>
+          <p>{data.description}</p>
+          <p>{data.date}</p>
+        </div>
       ))}
     </div>
   );
