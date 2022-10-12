@@ -5,10 +5,12 @@ interface LayoutProps {
 }
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="">
-      <h1 className="bg-sky-700"> {`woojae's blog!`}</h1>
-      {children}
-    </div>
+    <>
+      <div className="bg-sky-700 h-16 flex items-center ">
+        <h1 className="text-white">{`woojae's blog!`}</h1>
+      </div>
+      <div className="grid place-items-center">{children}</div>
+    </>
   );
 };
 
