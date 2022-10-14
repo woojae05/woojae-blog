@@ -1,27 +1,35 @@
 import React from "react";
-import fs from "fs";
+import useSWR, { SWRConfig } from "swr";
 import { remark } from "remark";
 import html from "remark-html";
+import { useRouter } from "next/router";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { getPostBySlug, getAllDocs } from "../lib/easyDocs";
+import BlogDetail from "../components/BlogDetail";
 
 interface PostDetailProps {
-  content: any;
+  fallback: {};
 }
 
-const PostDetail = ({ content }: PostDetailProps) => {
-  function createMarkup() {
-    return { __html: content };
-  }
-  return <div dangerouslySetInnerHTML={createMarkup()}></div>;
+const PostDetail = ({ fallback }: PostDetailProps) => {
+  const router = useRouter();
+  const query = router.query.slug;
+  return (
+    <SWRConfig value={{ fallback }}>
+      <BlogDetail queryKey={query} />
+    </SWRConfig>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = getPostBySlug(params?.slug as string);
+  const slug = params?.slug as string;
+  const post = getPostBySlug(slug);
   const content = String(await remark().use(html).process(post.content));
   return {
     props: {
-      content,
+      fallback: {
+        [slug]: content,
+      },
     },
   };
 };

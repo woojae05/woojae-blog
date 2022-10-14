@@ -7,8 +7,8 @@ body {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: red;
+  text-decoration:darkblue;
 }
 * {
   box-sizing: border-box;
@@ -25,7 +25,3 @@ h2 {
 h3 {
   @apply text-lg;
 }
-a {
-  @apply text-blue-600 underline;
-}
-
