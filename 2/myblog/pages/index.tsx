@@ -3,11 +3,11 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllDocs, DocType } from "../lib/easyDocs";
-import styles from "../styles/Home.module.css";
 
-const Home: NextPage = (props: any) => {
-  const { docs } = props;
-
+interface HomeProps {
+  docs: DocType[];
+}
+const Home: NextPage<HomeProps> = ({ docs }) => {
   return (
     <div>
       {docs.map(({ slug, data }: DocType) => (

@@ -3,20 +3,18 @@ import useSWR, { SWRConfig } from "swr";
 import { remark } from "remark";
 import html from "remark-html";
 import { useRouter } from "next/router";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { getPostBySlug, getAllDocs } from "../lib/easyDocs";
-import BlogDetail from "../components/BlogDetail";
+import PostDetail from "../components/PostDetail";
 
-interface PostDetailProps {
+interface PostsProps {
   fallback: {};
 }
 
-const PostDetail = ({ fallback }: PostDetailProps) => {
-  const router = useRouter();
-  const query = router.query.slug;
+const Posts: NextPage<PostsProps> = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
-      <BlogDetail queryKey={query} />
+      <PostDetail />
     </SWRConfig>
   );
 };
@@ -42,4 +40,4 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
   };
 };
 
-export default PostDetail;
+export default Posts;

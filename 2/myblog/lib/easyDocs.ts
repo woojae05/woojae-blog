@@ -16,7 +16,7 @@ export const getPostBySlug = (slug: string): DocType => {
     return { slug: realSlug, data, content }
 }
 
-export const getAllDocs = () => {
+export const getAllDocs = (): DocType[] => {
     const slugs = fs.readdirSync(docsDirectory);
     return slugs.map((slug) => getPostBySlug(slug))
 }
