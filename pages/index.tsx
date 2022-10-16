@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllDocs, DocType } from "../lib/easyDocs";
+import Imeage from "next/image";
 
 interface HomeProps {
   docs: DocType[];
@@ -10,6 +11,7 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = ({ docs }) => {
   return (
     <div>
+      <Image src={""}></Image>
       {docs.map(({ slug, data }: DocType) => (
         <div key={slug} className="grid place-items-center">
           <Link href={`/${slug}`}>
