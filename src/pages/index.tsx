@@ -11,7 +11,6 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = ({ docs }) => {
   return (
     <div>
-      <Image src={""}></Image>
       {docs.map(({ slug, data }: DocType) => (
         <div key={slug} className="grid place-items-center">
           <Link href={`/${slug}`}>
