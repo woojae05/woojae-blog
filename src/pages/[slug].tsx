@@ -2,7 +2,6 @@ import React from "react";
 import useSWR, { SWRConfig } from "swr";
 import { remark } from "remark";
 import html from "remark-html";
-import { useRouter } from "next/router";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { getPostBySlug, getAllDocs } from "../lib/easyDocs";
 import PostDetail from "../components/PostDetail";
