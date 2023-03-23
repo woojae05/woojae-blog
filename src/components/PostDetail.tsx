@@ -6,6 +6,7 @@ const PostDetail = () => {
   const { query } = useRouter();
   const key = query.slug;
   const { data } = useSWR(key);
+
   return <div dangerouslySetInnerHTML={{ __html: data }} />;
 };
 

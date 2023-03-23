@@ -3,7 +3,7 @@ import useSWR, { SWRConfig } from "swr";
 import { remark } from "remark";
 import html from "remark-html";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
-import { getPostBySlug, getAllDocs } from "../lib/easyDocs";
+import { getDocBySlug, getAllDocs } from "../lib/easyDocs";
 import PostDetail from "../components/PostDetail";
 
 interface PostsProps {
@@ -20,12 +20,14 @@ const Posts: NextPage<PostsProps> = ({ fallback }) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
-  const post = getPostBySlug(slug);
-  const content = String(await remark().use(html).process(post.content));
+  const post = getDocBySlug(slug);
+
+  const htmledContent = String(await remark().use(html).process(post.content));
+
   return {
     props: {
       fallback: {
-        [slug]: content,
+        [slug]: htmledContent,
       },
     },
   };

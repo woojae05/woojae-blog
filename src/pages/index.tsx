@@ -1,24 +1,15 @@
 import type { NextPage, GetStaticProps } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import PostCard from "../components/post/PostCard";
 import { getAllDocs, DocType } from "../lib/easyDocs";
-import Imeage from "next/image";
 
 interface HomeProps {
   docs: DocType[];
 }
 const Home: NextPage<HomeProps> = ({ docs }) => {
   return (
-    <div>
+    <div className="container m-auto grid grid-cols-3">
       {docs.map(({ slug, data }: DocType) => (
-        <div key={slug} className="grid place-items-center">
-          <Link href={`/${slug}`}>
-            <a className="text-3xl font-bold underline">{data.title}</a>
-          </Link>
-          <p>{data.description}</p>
-          <p>{data.date}</p>
-        </div>
+        <PostCard key={slug} slug={slug} data={data} />
       ))}
     </div>
   );

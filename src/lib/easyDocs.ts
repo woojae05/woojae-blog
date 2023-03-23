@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter"
+import matter from 'gray-matter';
 
 export interface DocType {
     slug: string,
@@ -9,7 +9,8 @@ export interface DocType {
 }
 
 const docsDirectory = path.resolve("__posts")
-export const getPostBySlug = (slug: string): DocType => {
+
+export const getDocBySlug = (slug: string): DocType => {
     const realSlug = slug.replace(/\.md$/, '');
     const post = fs.readFileSync(`./__posts/${realSlug}.md`, "utf-8")
     const { data, content } = matter(post)
@@ -18,5 +19,5 @@ export const getPostBySlug = (slug: string): DocType => {
 
 export const getAllDocs = (): DocType[] => {
     const slugs = fs.readdirSync(docsDirectory);
-    return slugs.map((slug) => getPostBySlug(slug))
+    return slugs.map((slug) => getDocBySlug(slug))
 }

@@ -7,9 +7,9 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <div className="bg-sky-700 h-16 flex items-center px-10">
+      <div className="bg-sky-700 h-16 flex items-center px-10 mb-20">
         <Link href={"/"}>
-          <h1 className="text-white cursor-pointer">{`woojae's blog!`}</h1>
+          <h1 className="text-white cursor-pointer">{`woojae's blog`}</h1>
         </Link>
       </div>
       <div className="grid place-items-center">{children}</div>
